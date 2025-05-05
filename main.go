@@ -4,6 +4,7 @@ package main
 import (
 	"bytes"
 	"errors"
+	"flag"
 	"fmt"
 	"io"
 	"net/http"
@@ -13,12 +14,23 @@ import (
 	"strings"
 )
 
+// Version is the current git tag, injected on build.
+var Version = "devel"
+
 type config struct {
 	chat  string
 	token string
 }
 
 func main() {
+	showVersion := flag.Bool("version", false, "Show version")
+	flag.Parse()
+
+	if *showVersion {
+		fmt.Println(Version)
+		return
+	}
+
 	conf, err := readConfig()
 	if err != nil {
 		fatalf("Failed to read config: %w", err)

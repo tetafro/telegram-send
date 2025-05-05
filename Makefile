@@ -8,4 +8,4 @@ lint:
 
 .PHONY: build
 build:
-	@ go build -o ./telegram-send .
+	@ go build -ldflags="-X main.Version=$(shell git describe --tags --abbrev=0)" -o telegram-send .
