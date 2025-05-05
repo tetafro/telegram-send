@@ -52,7 +52,7 @@ func readConfig() (config, error) {
 	if err != nil {
 		fatalf("Failed to get exec path: %w", err)
 	}
-	file := filepath.Join(filepath.Dir(exec), "config.ini")
+	file := filepath.Join(filepath.Dir(exec), "telegram-send.ini")
 
 	data, err := os.ReadFile(file) //nolint:gosec
 	if err != nil {
