@@ -18,8 +18,8 @@ import (
 var Version = "devel"
 
 type config struct {
-	chat  string
-	token string
+	chatid string
+	token  string
 }
 
 func main() {
@@ -76,8 +76,8 @@ func readConfig() (config, error) {
 		key := strings.TrimSpace(parts[0])
 		value := strings.TrimSpace(parts[1])
 		switch key {
-		case "chat":
-			conf.chat = value
+		case "chat_id":
+			conf.chatid = value
 		case "token":
 			conf.token = value
 		default:
@@ -90,7 +90,7 @@ func readConfig() (config, error) {
 func sendRequest(conf config, text string) error {
 	addr := fmt.Sprintf("https://api.telegram.org/bot%s/sendMessage", conf.token)
 	data := url.Values{}
-	data.Set("chat_id", conf.chat)
+	data.Set("chat_id", conf.chatid)
 	data.Set("text", text)
 
 	//nolint:gosec,noctx
