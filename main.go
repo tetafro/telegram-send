@@ -33,7 +33,7 @@ func main() {
 
 	conf, err := readConfig()
 	if err != nil {
-		fatalf("Failed to read config: %w", err)
+		fatalf("Failed to read config: %v", err)
 	}
 
 	if len(os.Args) == 1 {
@@ -42,7 +42,7 @@ func main() {
 	text := os.Args[1]
 
 	if err := sendRequest(conf, text); err != nil {
-		fatalf("Telegram API request failed: %w", err)
+		fatalf("Telegram API request failed: %v", err)
 	}
 	fmt.Println("Success")
 }
